@@ -57,6 +57,9 @@ sudo ./rotator.sh
 ```
 The script will take control of UFW, backup your current rules, bring up the tunnel, and automatically rotate the configurations. To stop it, press Ctrl+C. The script will clean and leave your system exactly as it was.
 
+<img width="1476" height="523" alt="image" src="https://github.com/user-attachments/assets/a71bbbe2-179d-412b-a399-607e1fa2a8c4" />
+
+
 ## Emergency Mode (Reset)
 
 If for any reason (like a sudden power loss or hard crash) the script stops abnormally and your internet remains blocked by the Kill Switch, you can restore the system using the reset flag:
