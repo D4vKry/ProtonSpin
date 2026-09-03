@@ -53,7 +53,8 @@ Make sure UFW is enabled and running correctly on your OS before executing the s
 To start the rotator, simply run the script with root privileges:
 ```bash
 
-sudo ./rotator.sh
+chmod +x ProtonSpin.sh
+sudo ./ProtonSpin.sh
 ```
 The script will take control of UFW, backup your current rules, bring up the tunnel, and automatically rotate the configurations. To stop it, press Ctrl+C. The script will clean and leave your system exactly as it was.
 
@@ -66,7 +67,7 @@ If for any reason (like a sudden power loss or hard crash) the script stops abno
 
 ```bash
 
-sudo ./rotator.sh --reset
+sudo ./ProtonSpin.sh --reset
 ```
 ## ⚙️ Advanced Configuration
 
