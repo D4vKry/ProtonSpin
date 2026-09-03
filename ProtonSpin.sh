@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ---
-# OpenVPN Rotator
+# ProtonSpin
 # 
 # Made by D4vKry
 # Last update 2/9/2026
