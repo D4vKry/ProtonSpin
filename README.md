@@ -72,11 +72,11 @@ sudo ./rotator.sh --reset
 
 You can modify the variables at the top of the script (USER CONFIG) to fit your needs:
 
-    `FOLDER_VPNS`: Path to the folder containing the .ovpn files.
+    FOLDER_VPNS: Path to the folder containing the .ovpn files.
 
-    `FILE_AUTH`: Path to the credentials file.
+    FILE_AUTH: Path to the credentials file.
 
-    `TEMPO`: Time in seconds that each connection lasts before rotating (default 360).
+    TEMPO: Time in seconds that each connection lasts before rotating (default 360).
 
 ## ⚠️ Security Warning
 
