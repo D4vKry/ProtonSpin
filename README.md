@@ -24,7 +24,7 @@ Make sure UFW is enabled and running correctly on your OS before executing the s
 
 1. **Clone this repository:**
    ```bash
-   git clone [link](link)
+   git clone [https://github.com/D4vKry/ProtonSpin.git](https://github.com/D4vKry/ProtonSpin.git)
    cd openvpn-rotator
    ```
 
