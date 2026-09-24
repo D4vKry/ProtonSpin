@@ -60,7 +60,7 @@ sudo ./ProtonSpin.sh
 ```
 The script will take control of UFW, backup your current rules, bring up the tunnel, and automatically rotate the configurations. To stop it, press Ctrl+C. The script will clean and leave your system exactly as it was.
 
-<img width="1476" height="523" alt="image" src="https://github.com/user-attachments/assets/a71bbbe2-179d-412b-a399-607e1fa2a8c4" />
+<img width="957" height="839" alt="image" src="https://github.com/user-attachments/assets/3114d41d-1135-4869-bd24-72115e8f7ce6" />
 
 
 ## Emergency Mode (Reset)
