@@ -2,11 +2,13 @@
 
 A robust and automated Bash script to continuously rotate OpenVPN connections. Designed with high privacy, it features a Kill Switch via UFW, DNS leak protection, and temporary IPv6 blocking at kernel level.
 
+<img width="813" height="402" alt="image" src="https://github.com/user-attachments/assets/bcbfd93a-8169-410b-a544-cd3c3eb88987" />
+
 Script tested on **Arch Linux** using **Proton VPN** `.ovpn` configuration files.
 
 ## ✨ Key Features
 
-*   **Automatic Rotation:** Randomly changes the VPN server every `X` seconds (default 360s).
+*   **Automatic & Manual Rotation:** Randomly changes the VPN server every X seconds (default 360s). You can also press the r key at any time to force an immediate rotation if a server is slow or unresponsive.
 *   **Strict UFW Kill Switch:** Absolutely blocks all incoming and outgoing traffic that doesn't pass through the VPN interface.
 *   **Anti Leaks:** Blocks IPv6 traffic at the `sysctl` level and routes DNS through the tunnel to prevent *DNS leaks*.
 *   **Failover Resilience:** Checks the new IP connectivity using multiple services (ifconfig.me, ipify, icanhazip). If the connection fails, it rotates to a new server.
