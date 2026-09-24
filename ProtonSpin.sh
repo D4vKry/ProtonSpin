@@ -30,8 +30,8 @@ set -o pipefail
 # USER CONFIG
 # ---
 
-FOLDER_VPNS="./proton"
-FILE_AUTH="./proton/creds.txt"
+FOLDER_VPNS="/home/deivid/ProtonSpin/proton"
+FILE_AUTH="/home/deivid/ProtonSpin/proton/creds.txt"
 TEMPO=360
 
 # public IP service for connectivity test.
@@ -811,6 +811,29 @@ reset_state() {
 }
 
 # ---
+# BANNER
+# ---
+
+show_banner() {
+    clear
+    cat << "EOF"
+  _____           _               _____       _       
+ |  __ \         | |             / ____|     (_)      
+ | |__) | __ ___ | |_ ___  _ __ | (___  _ __  _ _ __  
+ |  ___/ '__/ _ \| __/ _ \| '_ \ \___ \| '_ \| | '_ \ 
+ | |   | | | (_) | || (_) | | | |____) | |_) | | | | |
+ |_|   |_|  \___/ \__\___/|_| |_|_____/| .__/|_|_| |_|
+                                       | |            
+                                       |_|            
+======================================================
+               Made by @D4vKry
+       Website: https://d4vkry.github.io
+======================================================
+
+EOF
+}
+
+# ---
 # MAIN
 # ---
 
@@ -820,6 +843,9 @@ if [ "${1:-}" = "--reset" ]; then
     reset_state
     exit 0
 fi
+
+# Mostramos el banner nada más arrancar
+show_banner
 
 check_dependencies
 acquire_lock
@@ -930,9 +956,19 @@ while true; do
 
     log "+" "VPN active"
     log "+" "public IP: $current_ip"
-    log "+" "holding connection for ${TEMPO}s"
+    log "+" "holding connection for ${TEMPO}s (Press 'r' to force rotation)"
 
-    sleep "$TEMPO"
+    elapsed=0
+    while [ "$elapsed" -lt "$TEMPO" ]; do
+        if read -t 1 -n 1 -s key; then
+            if [[ "$key" == "r" || "$key" == "R" ]]; then
+                echo ""
+                log "i" "Manual rotation triggered!"
+                break
+            fi
+        fi
+        ((elapsed++))
+    done
 
     log "-" "rotation interval completed"
 
