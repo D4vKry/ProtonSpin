@@ -4,7 +4,7 @@
 # ProtonSpin
 # 
 # Made by D4vKry
-# Last update 2/9/2026
+# Last update 25/9/2026
 # Website: https://d4vkry.github.io
 # Thanks ;)
 #
