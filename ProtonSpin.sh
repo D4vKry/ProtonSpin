@@ -81,6 +81,7 @@ ORIGINAL_IPV6_DEF=""
 
 CURRENT_CONFIG=""
 
+STTY_ORIGINAL=""
 # ---
 # LOGGING
 # ---
@@ -287,6 +288,18 @@ ufw_remove_instance_rules() {
         [ -n "$number" ] || continue
         yes | ufw delete "$number" >/dev/null 2>&1 || true
     done <<< "$numbers"
+}
+
+# evitar que se quede cogado
+enable_raw_input() {
+    STTY_ORIGINAL=$(stty -g < /dev/tty 2>/dev/null) || return 1
+    stty -icanon -echo < /dev/tty 2>/dev/null
+}
+
+restore_raw_input() {
+    [ -n "$STTY_ORIGINAL" ] || return 0
+    stty "$STTY_ORIGINAL" < /dev/tty 2>/dev/null
+    STTY_ORIGINAL=""
 }
 
 # ---
@@ -736,6 +749,7 @@ cleanup() {
 
     restore_ufw
     restore_dns
+    restore_raw_input
 
     if ip link show "$TUN_DEV" >/dev/null 2>&1; then
         ip link delete "$TUN_DEV" >/dev/null 2>&1 || true
@@ -882,6 +896,8 @@ configure_dns
 log "+" "system protection enabled"
 log "i" "press Ctrl+C to stop and restore the system"
 
+enable_raw_input
+
 echo "------------------------------------------------------------"
 
 # ---
@@ -889,6 +905,8 @@ echo "------------------------------------------------------------"
 # ---
 
 last_config=""
+
+
 
 while true; do
 
@@ -960,14 +978,18 @@ while true; do
 
     elapsed=0
     while [ "$elapsed" -lt "$TEMPO" ]; do
-        if read -t 1 -n 1 -s key; then
+        sleep 1 &
+        wait "$!"
+        if read -t 0 -n 1 -s < /dev/tty 2>/dev/null; then
+            key=""
+            read -n 1 -s key < /dev/tty 2>/dev/null
             if [[ "$key" == "r" || "$key" == "R" ]]; then
                 echo ""
                 log "i" "Manual rotation triggered!"
                 break
             fi
         fi
-        ((elapsed++))
+        elapsed=$((elapsed + 1))
     done
 
     log "-" "rotation interval completed"
