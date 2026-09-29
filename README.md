@@ -87,6 +87,6 @@ This script modifies the system firewall (UFW) and kernel parameters at runtime.
 
 ## License
 
-This script is protected by License MIT
+This script is protected by License GPLv3
 
 Made by @D4vKry for all.
